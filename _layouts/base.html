@@ -45,7 +45,7 @@
   <script>
     // Classify links: external get highlight effect, internal get small-caps treatment
     document.querySelectorAll('main a').forEach(function (el) {
-      var href = el.getAttribute('href');
+      const href = el.getAttribute('href');
       if (!href) return;
       if (href.startsWith('http://') || href.startsWith('https://') || href.startsWith('//')) {
         el.classList.add('external');
