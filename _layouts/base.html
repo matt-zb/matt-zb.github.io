@@ -26,7 +26,9 @@
 
   <header class="site-header">
     <nav class="site-nav">
-      <a href="{{ '/' | relative_url }}" class="site-title">{{ site.title }}</a>
+      <a href="{{ '/' | relative_url }}" class="nav-link{% if page.url == '/' %} nav-current{% endif %}">Home</a>
+      <a href="{{ '/about/' | relative_url }}" class="nav-link{% if page.url contains 'about' %} nav-current{% endif %}">About</a>
+      <a href="#" class="nav-link" id="nav-random">Random</a>
     </nav>
   </header>
 
@@ -52,9 +54,29 @@
       }
     });
 
-    // Random pressure variation per external link (drives slight SVG filter variation)
-    document.querySelectorAll('a.external').forEach(function (el) {
-      el.dataset.pressure = Math.floor(Math.random() * 3);
+    // Random page navigation
+    var sitePostUrls = [{% for post in site.posts %}"{{ post.url | relative_url }}"{% unless forloop.last %},{% endunless %}{% endfor %}];
+    document.getElementById('nav-random').addEventListener('click', function (e) {
+      e.preventDefault();
+      if (sitePostUrls.length)
+        window.location.href = sitePostUrls[Math.floor(Math.random() * sitePostUrls.length)];
+    });
+
+    // Heading anchor links (¶) for h2 and h3 inside post content
+    document.querySelectorAll('.post-content h2, .post-content h3').forEach(function (heading) {
+      if (!heading.id) {
+        heading.id = heading.textContent
+          .toLowerCase()
+          .replace(/[^\w\s-]/g, '')
+          .trim()
+          .replace(/\s+/g, '-');
+      }
+      var anchor = document.createElement('a');
+      anchor.href = '#' + heading.id;
+      anchor.className = 'heading-anchor';
+      anchor.setAttribute('aria-hidden', 'true');
+      anchor.textContent = '¶';
+      heading.appendChild(anchor);
     });
   </script>
 

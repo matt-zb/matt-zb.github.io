@@ -85,33 +85,37 @@ body {
 }
 
 .site-header {
-  padding: 2rem 2rem 1.5rem;
-  border-bottom: 1px solid var(--rule);
+  padding: 1.5rem 2rem 0;
 }
 
 .site-nav {
   max-width: 65ch;
   margin: 0 auto;
+  display: flex;
+  gap: 2rem;
+  align-items: baseline;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--rule);
 }
 
-.site-title {
-  font-family: var(--font-display);
-  font-size: 1.05rem;
-  font-weight: 300;
-  letter-spacing: 0.05em;
-  color: var(--ink);
+.nav-link {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--mid);
   text-decoration: none;
-  text-transform: lowercase;
 }
 
-.site-title:hover {
-  color: var(--accent);
+.nav-link:hover,
+.nav-link.nav-current {
+  color: var(--ink);
 }
 
 .content {
   max-width: 65ch;
   margin: 0 auto;
-  padding: 3.5rem 2rem 5rem;
+  padding: 2.5rem 2rem 4rem;
 }
 
 .site-footer {
@@ -217,35 +221,52 @@ pre code {
 
 /* ─── Links ──────────────────────────────────────────────────── */
 
-/* Internal links — small caps, no underline */
+/* Internal links — small caps, softened color */
 a[href^="/"] {
   font-variant: small-caps;
   letter-spacing: 0.04em;
-  color: var(--accent);
+  color: var(--mid);
   text-decoration: none;
 }
 
 a[href^="/"]:hover {
+  color: var(--ink);
   text-decoration: underline;
-  text-decoration-color: var(--accent-dim);
+  text-decoration-color: var(--rule);
   text-underline-offset: 2px;
 }
 
-/* External links — analog highlighter on hover */
+/* External links — ↗ marker at rest, analog highlighter on hover */
 a.external {
-  color: var(--accent);
+  color: var(--ink);
   text-decoration: none;
   background: linear-gradient(var(--hl-yellow), var(--hl-yellow)) no-repeat;
   background-size: 0% 85%;
   background-position: 0 58%;
   transition: background-size 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  filter: url(#highlight-texture);
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
 
+a.external::after {
+  content: '↗';
+  font-size: 0.62em;
+  vertical-align: super;
+  line-height: 1;
+  margin-left: 0.08em;
+  color: var(--mid);
+  font-family: var(--font-body);
+  font-variant: normal;
+  transition: opacity 0.2s;
+}
+
 a.external:hover {
   background-size: 100% 85%;
+  filter: url(#highlight-texture);
+}
+
+a.external:hover::after {
+  opacity: 0;
 }
 
 /* ─── Post layout ────────────────────────────────────────────── */
@@ -256,29 +277,65 @@ a.external:hover {
   border-bottom: 1px solid var(--rule);
 }
 
+.post-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  margin-bottom: 0.7rem;
+}
+
 .post-date {
   font-family: var(--font-mono);
   font-size: 0.8rem;
   color: var(--mid);
   letter-spacing: 0.05em;
-  display: block;
-  margin-bottom: 0.7rem;
   text-transform: uppercase;
+}
+
+.post-reading-time {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--mid);
+  letter-spacing: 0.03em;
 }
 
 .post-title {
   margin-top: 0;
 }
 
-.post-content > * + * {
-  /* Siblings already use margin-top/margin-bottom; this is a safety net */
+/* ─── Heading anchors ────────────────────────────────────────── */
+
+.post-content h2,
+.post-content h3 {
+  position: relative;
+}
+
+.heading-anchor {
+  font-family: var(--font-body);
+  font-variant: normal;
+  font-size: 0.7em;
+  color: var(--rule);
+  text-decoration: none;
+  margin-left: 0.5em;
+  opacity: 0;
+  transition: opacity 0.15s, color 0.15s;
+  user-select: none;
+}
+
+.post-content h2:hover .heading-anchor,
+.post-content h3:hover .heading-anchor {
+  opacity: 1;
+}
+
+.heading-anchor:hover {
+  color: var(--mid);
 }
 
 /* ─── Index / post list ──────────────────────────────────────── */
 
 .index-intro {
-  margin-bottom: 3rem;
-  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
   border-bottom: 1px solid var(--rule);
 }
 
@@ -344,6 +401,18 @@ a.external:hover {
   margin-bottom: 0;
 }
 
+/* ─── Static pages (about, etc.) ─────────────────────────────── */
+
+.page-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.page-header h1 {
+  margin-top: 0;
+}
+
 /* ─── Syntax highlighting (Rouge) ───────────────────────────── */
 
 .highlight .c,
@@ -366,11 +435,15 @@ a.external:hover {
   html { font-size: 17px; }
 
   .content {
-    padding: 2.5rem 1.25rem 4rem;
+    padding: 2rem 1.25rem 3.5rem;
   }
 
   .site-header {
-    padding: 1.25rem 1.25rem 1rem;
+    padding: 1rem 1.25rem 0;
+  }
+
+  .site-nav {
+    gap: 1.5rem;
   }
 
   .site-footer {
@@ -383,6 +456,11 @@ a.external:hover {
 
   .index-intro h1 { font-size: 2rem; }
   .post-preview .post-title { font-size: 1.5rem; }
+
+  .post-meta {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
 }
 
 @media (min-width: 1100px) {
