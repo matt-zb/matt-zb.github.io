@@ -2,7 +2,7 @@ title: "zbikow.ski"
 description: "Matthew Zbikowski's personal blog"
 author: "Matthew Zbikowski"
 baseurl: ""
-url: ""
+url: "https://zbikow.ski"
 
 permalink: /:year/:month/:day/:title/
 markdown: kramdown
