@@ -1,0 +1,25 @@
+---
+layout: base
+title: "Matthew Zbikowski"
+---
+
+<section class="index-intro">
+  <h1>Matthew Zbikowski</h1>
+  <p>Writing on software, language, and the texture of ideas.</p>
+</section>
+
+<ol class="post-list" reversed>
+  {% for post in site.posts %}
+  <li class="post-preview">
+    <time class="post-date" datetime="{{ post.date | date: '%Y-%m-%d' }}">
+      {{ post.date | date: '%B %-d, %Y' }}
+    </time>
+    <h2 class="post-title">
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    </h2>
+    {% if post.excerpt %}
+    <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ol>

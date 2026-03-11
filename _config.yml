@@ -1,0 +1,16 @@
+title: "zbikow.ski"
+description: "Matthew Zbikowski's personal blog"
+author: "Matthew Zbikowski"
+baseurl: ""
+url: ""
+
+permalink: /:year/:month/:day/:title/
+markdown: kramdown
+highlighter: rouge
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+plugins:
+  - jekyll-feed

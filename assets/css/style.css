@@ -1,0 +1,395 @@
+/* ============================================================
+   zbikow.ski — stylesheet
+   Typography: Charter (body) · Cormorant Display (headings) · IBM Plex Mono (code/meta)
+   ============================================================ */
+
+/* ─── Self-hosted Charter (drop woff2 files into /assets/fonts/) ─── */
+@font-face {
+  font-family: 'Charter';
+  src: url('/assets/fonts/Charter-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Charter';
+  src: url('/assets/fonts/Charter-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Charter';
+  src: url('/assets/fonts/Charter-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Charter';
+  src: url('/assets/fonts/Charter-BoldItalic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ─── Design tokens ──────────────────────────────────────────── */
+:root {
+  --font-body:    'Charter', 'Bitstream Charter', Georgia, serif;
+  --font-display: 'Cormorant Display', 'Cormorant', Garamond, serif;
+  --font-mono:    'IBM Plex Mono', 'Fira Mono', 'Courier New', monospace;
+
+  --paper:      #f5f0e8;
+  --ink:        #1a1814;
+  --mid:        #6b6560;
+  --rule:       #d8d0c4;
+  --accent:     #b85c38;
+  --accent-dim: rgba(184, 92, 56, 0.15);
+  --hl-yellow:  rgba(255, 215, 70, 0.42);
+}
+
+/* ─── Reset ──────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ─── Base ───────────────────────────────────────────────────── */
+html {
+  font-size: 18px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  line-height: 1.65;
+  background-color: var(--paper);
+  /* Subtle SVG paper grain — no external image file needed */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  font-feature-settings: "liga" 1, "kern" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Layout ─────────────────────────────────────────────────── */
+
+/* Hide the SVG filter element from layout */
+.svg-filters {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.site-header {
+  padding: 2rem 2rem 1.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.site-nav {
+  max-width: 65ch;
+  margin: 0 auto;
+}
+
+.site-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  color: var(--ink);
+  text-decoration: none;
+  text-transform: lowercase;
+}
+
+.site-title:hover {
+  color: var(--accent);
+}
+
+.content {
+  max-width: 65ch;
+  margin: 0 auto;
+  padding: 3.5rem 2rem 5rem;
+}
+
+.site-footer {
+  border-top: 1px solid var(--rule);
+  padding: 1.5rem 2rem;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--mid);
+  letter-spacing: 0.02em;
+}
+
+/* ─── Typography ─────────────────────────────────────────────── */
+
+p {
+  margin-bottom: 1.4em;
+  font-size: 1.05rem;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  line-height: 1.15;
+  margin-top: 2.4em;
+  margin-bottom: 0.55em;
+}
+
+h1 { font-size: 2.4rem;  margin-top: 0; }
+h2 { font-size: 1.9rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.2rem; font-weight: 400; }
+
+hr {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 2.8em 0;
+}
+
+blockquote {
+  border-left: 2px solid var(--accent);
+  padding: 0.1em 0 0.1em 1.5em;
+  margin: 1.8em 0;
+  color: var(--mid);
+  font-style: italic;
+}
+
+blockquote p {
+  margin-bottom: 0.5em;
+}
+
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+ul, ol {
+  padding-left: 1.6em;
+  margin-bottom: 1.4em;
+}
+
+li {
+  margin-bottom: 0.4em;
+  font-size: 1.05rem;
+}
+
+li:last-child {
+  margin-bottom: 0;
+}
+
+/* ─── Monospace / code ───────────────────────────────────────── */
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.87em;
+  background: var(--accent-dim);
+  padding: 0.12em 0.38em;
+  border-radius: 2px;
+}
+
+pre {
+  font-family: var(--font-mono);
+  font-size: 0.87em;
+  background: rgba(26, 24, 20, 0.05);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 1.3em 1.6em;
+  overflow-x: auto;
+  margin-bottom: 1.4em;
+  line-height: 1.55;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  font-size: 1em;
+}
+
+/* ─── Links ──────────────────────────────────────────────────── */
+
+/* Internal links — small caps, no underline */
+a[href^="/"] {
+  font-variant: small-caps;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a[href^="/"]:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--accent-dim);
+  text-underline-offset: 2px;
+}
+
+/* External links — analog highlighter on hover */
+a.external {
+  color: var(--accent);
+  text-decoration: none;
+  background: linear-gradient(var(--hl-yellow), var(--hl-yellow)) no-repeat;
+  background-size: 0% 85%;
+  background-position: 0 58%;
+  transition: background-size 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: url(#highlight-texture);
+  will-change: background-size;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+a.external:hover {
+  background-size: 100% 85%;
+}
+
+/* ─── Post layout ────────────────────────────────────────────── */
+
+.post-header {
+  margin-bottom: 2.8rem;
+  padding-bottom: 1.6rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.post-date {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--mid);
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 0.7rem;
+  text-transform: uppercase;
+}
+
+.post-title {
+  margin-top: 0;
+}
+
+.post-content > * + * {
+  /* Siblings already use margin-top/margin-bottom; this is a safety net */
+}
+
+/* ─── Index / post list ──────────────────────────────────────── */
+
+.index-intro {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.index-intro h1 {
+  font-size: 2.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.index-intro p {
+  color: var(--mid);
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+
+.post-list {
+  list-style: none;
+  padding: 0;
+}
+
+.post-preview {
+  padding: 1.8rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.post-preview:first-child {
+  border-top: 1px solid var(--rule);
+}
+
+.post-preview .post-date {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--mid);
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.post-preview .post-title {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin-top: 0;
+  margin-bottom: 0.6rem;
+}
+
+.post-preview .post-title a {
+  color: var(--ink);
+  text-decoration: none;
+  font-variant: normal;
+}
+
+.post-preview .post-title a:hover {
+  color: var(--accent);
+}
+
+.post-excerpt {
+  color: var(--mid);
+  font-size: 0.97rem;
+  line-height: 1.55;
+  margin-bottom: 0;
+}
+
+/* ─── Syntax highlighting (Rouge) ───────────────────────────── */
+
+.highlight .c,
+.highlight .cm,
+.highlight .c1  { color: #8e8880; font-style: italic; }  /* comments */
+.highlight .k,
+.highlight .kd,
+.highlight .kr  { color: var(--accent); font-weight: 500; }  /* keywords */
+.highlight .s,
+.highlight .s1,
+.highlight .s2  { color: #6b8c6e; }  /* strings */
+.highlight .mi,
+.highlight .mf  { color: #6b7a8c; }  /* numbers */
+.highlight .nf  { color: #4a6b8c; }  /* function names */
+.highlight .err { background: none; color: inherit; }
+
+/* ─── Responsive ─────────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  html { font-size: 17px; }
+
+  .content {
+    padding: 2.5rem 1.25rem 4rem;
+  }
+
+  .site-header {
+    padding: 1.25rem 1.25rem 1rem;
+  }
+
+  .site-footer {
+    padding: 1.25rem;
+  }
+
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.6rem; }
+  h3 { font-size: 1.35rem; }
+
+  .index-intro h1 { font-size: 2rem; }
+  .post-preview .post-title { font-size: 1.5rem; }
+}
+
+@media (min-width: 1100px) {
+  /* Slight breathing room at wide viewports */
+  .content {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
