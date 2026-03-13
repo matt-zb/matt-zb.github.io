@@ -89,7 +89,25 @@ body {
   gap: 2rem;
   align-items: baseline;
   padding-bottom: 1rem;
-  border-bottom: 3px solid var(--accent);
+  position: relative;
+}
+
+.site-nav::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background-color: var(--accent);
+  background-image: var(--noise);
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 2%,
+    black 97%,
+    transparent 100%
+  );
 }
 
 .site-nav .nav-link {
