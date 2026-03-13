@@ -90,9 +90,11 @@
         if (backref) backref.parentNode.removeChild(backref);
         var isMn = li.id.indexOf('fn:mn-') === 0;
         fnData[li.id] = { html: clone.innerHTML.trim(), isMarginNote: isMn };
-        // Mark <li> so CSS can style it differently on mobile
         if (isMn) li.classList.add('mn-item');
       });
+
+      // Sidenote-only counter (margin notes are not counted)
+      var snCounter = 0;
 
       // Insert a .sidenote or .marginnote span after each <sup> reference
       postContent.querySelectorAll('sup[id^="fnref"]').forEach(function (sup) {
@@ -105,9 +107,13 @@
         var sn = document.createElement('span');
         if (data.isMarginNote) {
           sn.className = 'marginnote';
-          sup.classList.add('mn-ref');   // CSS hides this sup
+          sup.classList.add('mn-ref');
         } else {
+          snCounter++;
           sn.className = 'sidenote';
+          sn.dataset.num = snCounter;
+          // Sync in-text sup to show sidenote-only number (not kramdown's sequential)
+          a.textContent = snCounter;
         }
         sn.innerHTML = data.html;
         sup.parentNode.insertBefore(sn, sup.nextSibling);

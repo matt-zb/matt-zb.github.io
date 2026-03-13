@@ -166,11 +166,29 @@ hr {
 }
 
 blockquote {
-  border-left: 2px solid var(--accent);
+  position: relative;
   padding: 0.1em 0 0.1em 1.5em;
   margin: 1.8em 0;
   color: var(--mid);
   font-style: italic;
+}
+
+blockquote::before {
+  content: '';
+  position: absolute;
+  top: -0.4em;
+  bottom: -0.4em;
+  left: 0;
+  width: 3px;
+  background-color: var(--accent);
+  background-image: var(--noise);
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
 }
 
 blockquote p {
@@ -546,13 +564,8 @@ a.hl[data-pressure="3"] {
 
 /* ─── Sidenotes & Margin Notes ────────────────────────────────── */
 
-/* CSS counter resets per post */
-.post-content {
-  counter-reset: sidenote-counter;
-}
-
-/* In-text superscript (sidenotes): body font, muted */
-.post-content sup.footnote {
+/* In-text superscript: body font, muted, no browser-default link chrome */
+.post-content sup[id^="fnref"] {
   font-family: var(--font-body);
   font-size: 0.72rem;
   line-height: 1;
@@ -560,36 +573,46 @@ a.hl[data-pressure="3"] {
   color: var(--mid);
 }
 
-.post-content sup.footnote a {
+/* Expand touch target without affecting visible size */
+.post-content sup[id^="fnref"] a {
   color: var(--mid);
   text-decoration: none;
+  display: inline-block;
+  padding: 0.3em 0.25em;
+  margin: -0.3em -0.25em;
 }
 
-.post-content sup.footnote a:hover {
+.post-content sup[id^="fnref"] a:hover {
   color: var(--accent);
 }
 
-/* In-text superscript for margin notes: hidden entirely */
-.post-content sup.footnote.mn-ref {
+/* Margin-note sups: hidden entirely (JS adds .mn-ref) */
+.post-content sup[id^="fnref"].mn-ref {
   display: none;
 }
 
-/* Hidden by default; only shown at wide breakpoint */
+/* Hidden by default; wide breakpoint enables float */
 .sidenote,
 .marginnote {
   display: none;
 }
 
-/* ── Wide screens: float both note types into right margin ── */
-@media (min-width: 1200px) {
+/* ── Wide screens: float notes into right margin ── */
+@media (min-width: 960px) {
+  /* Shift post content slightly left so notes have room at ~960px */
+  .content:has(article.post) {
+    margin-left: auto;
+    margin-right: calc(50vw - 32.5ch + 55px);
+  }
+
   .sidenote,
   .marginnote {
     display: block;
     float: right;
     clear: right;
-    width: 180px;
-    /* Negative margin-right pulls the float entirely outside the 65ch column */
-    margin-right: calc(-180px - 1.75rem);
+    width: 175px;
+    /* Negative margin-right pulls float entirely outside the 65ch column */
+    margin-right: calc(-175px - 1.5rem);
     margin-left: 0;
     margin-top: 0.15em;
     margin-bottom: 0.75em;
@@ -599,13 +622,9 @@ a.hl[data-pressure="3"] {
     color: var(--mid);
   }
 
-  /* Sidenote: CSS counter auto-generates the number */
-  .sidenote {
-    counter-increment: sidenote-counter;
-  }
-
+  /* Sidenote: number injected by JS via data-num attribute */
   .sidenote::before {
-    content: counter(sidenote-counter);
+    content: attr(data-num);
     font-family: var(--font-body);
     font-size: 0.72rem;
     color: var(--mid);
@@ -638,8 +657,8 @@ a.hl[data-pressure="3"] {
   }
 }
 
-/* ── Narrow screens: sidenotes hidden, show footnotes at bottom ── */
-@media (max-width: 1199px) {
+/* ── Narrow screens: show footnotes at bottom ── */
+@media (max-width: 959px) {
   .post-content .footnotes {
     margin-top: 2.5rem;
     padding-top: 1.25rem;
@@ -655,6 +674,19 @@ a.hl[data-pressure="3"] {
     color: var(--mid);
     line-height: 1.5;
     margin-bottom: 0.55em;
+  }
+
+  /* Brief highlight on the targeted footnote */
+  .post-content .footnotes li:target {
+    animation: fn-highlight 2.5s ease-out both;
+    border-radius: 2px;
+    padding: 0.1em 0.3em;
+    margin: -0.1em -0.3em;
+  }
+
+  @keyframes fn-highlight {
+    0%, 55% { background-color: var(--accent-dim); }
+    100%    { background-color: transparent; }
   }
 
   /* Margin note items: em-dash instead of list number */
