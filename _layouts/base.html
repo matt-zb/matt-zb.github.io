@@ -66,9 +66,70 @@
       anchor.href = '#' + heading.id;
       anchor.className = 'heading-anchor';
       anchor.setAttribute('aria-hidden', 'true');
-      anchor.textContent = '¶';
+      anchor.textContent = '§';
       heading.appendChild(anchor);
     });
+  </script>
+
+  <script>
+    // Tufte-style sidenotes and margin notes.
+    // Transforms kramdown footnotes into right-margin floats.
+    //   Sidenotes:    [^label]       — numbered, anchored in text
+    //   Margin notes: [^mn-label]    — unnumbered, no in-text marker
+    (function () {
+      var postContent = document.querySelector('.post-content');
+      if (!postContent) return;
+      var footnotesDiv = postContent.querySelector('.footnotes');
+      if (!footnotesDiv) return;
+
+      // Build map: footnote li id → { html, isMarginNote }
+      var fnData = {};
+      footnotesDiv.querySelectorAll('li[id]').forEach(function (li) {
+        var clone = li.cloneNode(true);
+        var backref = clone.querySelector('.reversefootnote');
+        if (backref) backref.parentNode.removeChild(backref);
+        var isMn = li.id.indexOf('fn:mn-') === 0;
+        fnData[li.id] = { html: clone.innerHTML.trim(), isMarginNote: isMn };
+        if (isMn) li.classList.add('mn-item');
+      });
+
+      // Sidenote-only counter (margin notes are not counted)
+      var snCounter = 0;
+      // Maps footnote li id → sidenote number, used to fix narrow-screen list
+      var fnNumMap = {};
+
+      // Insert a .sidenote or .marginnote span after each <sup> reference
+      postContent.querySelectorAll('sup[id^="fnref"]').forEach(function (sup) {
+        var a = sup.querySelector('a[href]');
+        if (!a) return;
+        var targetId = a.getAttribute('href').replace(/^#/, '');
+        var data = fnData[targetId];
+        if (!data) return;
+
+        var sn = document.createElement('span');
+        if (data.isMarginNote) {
+          sn.className = 'marginnote';
+          sup.classList.add('mn-ref');
+        } else {
+          snCounter++;
+          sn.className = 'sidenote';
+          sn.dataset.num = snCounter;
+          // Sync in-text sup to show sidenote-only number (not kramdown's sequential)
+          a.textContent = snCounter;
+          fnNumMap[targetId] = snCounter;
+        }
+        sn.innerHTML = data.html;
+        sup.parentNode.insertBefore(sn, sup.nextSibling);
+      });
+
+      // Set explicit list-item values on the footnotes <ol> so narrow-screen
+      // numbers match the sidenote-only counter (margin notes are skipped).
+      footnotesDiv.querySelectorAll('li[id]').forEach(function (li) {
+        if (fnNumMap[li.id] !== undefined) {
+          li.setAttribute('value', fnNumMap[li.id]);
+        }
+      });
+    })();
   </script>
 
 </body>

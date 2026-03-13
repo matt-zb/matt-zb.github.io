@@ -166,11 +166,29 @@ hr {
 }
 
 blockquote {
-  border-left: 2px solid var(--accent);
+  position: relative;
   padding: 0.1em 0 0.1em 1.5em;
   margin: 1.8em 0;
   color: var(--mid);
   font-style: italic;
+}
+
+blockquote::before {
+  content: '';
+  position: absolute;
+  top: -0.4em;
+  bottom: -0.4em;
+  left: 0;
+  width: 3px;
+  background-color: var(--accent);
+  background-image: var(--noise);
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
 }
 
 blockquote p {
@@ -227,6 +245,16 @@ pre code {
 }
 
 /* ─── Links ──────────────────────────────────────────────────── */
+
+/* Fragment links (TOC, in-page anchors) — match body text, accent on hover */
+a[href^="#"]:not(.heading-anchor):not(.reversefootnote) {
+  color: inherit;
+  text-decoration: none;
+}
+
+a[href^="#"]:not(.heading-anchor):not(.reversefootnote):hover {
+  color: var(--accent);
+}
 
 /* Internal links — small caps, softened color */
 a[href^="/"] {
@@ -541,5 +569,178 @@ a.hl[data-pressure="3"] {
   .site-header {
     padding-left: 0;
     padding-right: 0;
+  }
+}
+
+/* ─── Sidenotes & Margin Notes ────────────────────────────────── */
+
+/* In-text superscript: body font, muted, no browser-default link chrome */
+.post-content sup[id^="fnref"] {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  line-height: 1;
+  vertical-align: super;
+  color: var(--mid);
+}
+
+/* Expand touch target without affecting visible size */
+.post-content sup[id^="fnref"] a {
+  color: var(--mid);
+  text-decoration: none;
+  display: inline-block;
+  padding: 0.3em 0.25em;
+  margin: -0.3em -0.25em;
+}
+
+.post-content sup[id^="fnref"] a:hover {
+  color: var(--accent);
+}
+
+/* Margin-note sups: hidden entirely (JS adds .mn-ref) */
+.post-content sup[id^="fnref"].mn-ref {
+  display: none;
+}
+
+/* Hidden by default; wide breakpoint enables float */
+.sidenote,
+.marginnote {
+  display: none;
+}
+
+/* ── Wide screens: float notes into right margin ── */
+@media (min-width: 801px) {
+  /* Centre the combined text+sidenote block on all pages.
+     Combined half-width = 32.5ch + 0.75rem + 87.5px (text + gap/2 + sidenote/2). */
+  .content {
+    margin-left: auto;
+    margin-right: calc(50vw - 32.5ch + 87.5px + 0.75rem);
+  }
+
+  /* Header spans the full text+sidenote width so the nav border aligns */
+  .site-header {
+    max-width: calc(65ch + 1.5rem + 175px);
+    margin-left: auto;
+    margin-right: calc(50vw - 32.5ch - 87.5px - 0.75rem);
+  }
+
+  .sidenote,
+  .marginnote {
+    display: block;
+    float: right;
+    clear: right;
+    width: 175px;
+    /* Negative margin-right pulls float entirely outside the 65ch column */
+    margin-right: calc(-175px - 1.5rem);
+    margin-left: 0;
+    margin-top: 0.15em;
+    margin-bottom: 0.75em;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    line-height: 1.35;
+    color: var(--mid);
+  }
+
+  /* Sidenote: superscript number injected by JS via data-num attribute */
+  .sidenote::before {
+    content: attr(data-num);
+    font-family: var(--font-body);
+    font-size: 0.63rem;
+    color: var(--mid);
+    vertical-align: super;
+    margin-right: 0.15em;
+  }
+
+  /* Margin note: no number prefix */
+  .marginnote::before {
+    content: none;
+  }
+
+  /* Sidenote paragraphs run inline so the superscript number shares the first line */
+  .sidenote p {
+    display: inline;
+    font-size: inherit;
+    color: inherit;
+  }
+
+  /* Block-level break between consecutive sidenote paragraphs */
+  .sidenote p + p::before {
+    content: '';
+    display: block;
+    margin-top: 0.35em;
+  }
+
+  /* Marginnote paragraphs stay block */
+  .marginnote p {
+    font-size: inherit;
+    color: inherit;
+    margin-bottom: 0.35em;
+  }
+
+  .marginnote p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Hide kramdown footnotes block — sidenotes replace it */
+  .post-content .footnotes {
+    display: none;
+  }
+}
+
+/* ── Narrow screens: show footnotes at bottom ── */
+@media (max-width: 800px) {
+  .post-content .footnotes {
+    margin-top: 2.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .post-content .footnotes ol {
+    padding-left: 1.4em;
+  }
+
+  .post-content .footnotes li {
+    font-size: 0.88rem;
+    color: var(--mid);
+    line-height: 1.5;
+    margin-bottom: 0.55em;
+  }
+
+  /* Brief highlight on the targeted footnote */
+  .post-content .footnotes li:target {
+    animation: fn-highlight 2.5s ease-out both;
+    border-radius: 2px;
+  }
+
+  @keyframes fn-highlight {
+    0%, 55% { background-color: var(--accent-dim); }
+    100%    { background-color: transparent; }
+  }
+
+  /* Margin note items: em-dash instead of list number */
+  .post-content .footnotes li.mn-item {
+    list-style: none;
+  }
+
+  .post-content .footnotes li.mn-item::before {
+    content: "— ";
+    color: var(--mid);
+  }
+
+  .post-content .footnotes li p {
+    font-size: inherit;
+    color: inherit;
+    margin-bottom: 0;
+  }
+
+  /* Back-ref arrow: subtle */
+  .post-content .footnotes .reversefootnote {
+    color: var(--rule);
+    text-decoration: none;
+    margin-left: 0.3em;
+    font-size: 0.85em;
+  }
+
+  .post-content .footnotes .reversefootnote:hover {
+    color: var(--mid);
   }
 }
