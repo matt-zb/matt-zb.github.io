@@ -12,16 +12,6 @@
 </head>
 <body>
 
-  <!-- SVG filter for analog highlight effect — applied only to the highlight layer, never the text -->
-  <svg class="svg-filters" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-    <defs>
-      <filter id="analog-hl" x="-8%" y="-50%" width="116%" height="200%" color-interpolation-filters="sRGB">
-        <feTurbulence type="turbulence" baseFrequency="0.022 0.09" numOctaves="3" seed="11" result="noise"/>
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="G"/>
-      </filter>
-    </defs>
-  </svg>
-
   <header class="site-header">
     <nav class="site-nav">
       <a href="{{ '/' | relative_url }}" class="nav-link{% if page.url == '/' %} nav-current{% endif %}">Home</a>
