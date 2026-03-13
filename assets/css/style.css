@@ -680,8 +680,6 @@ a.hl[data-pressure="3"] {
   .post-content .footnotes li:target {
     animation: fn-highlight 2.5s ease-out both;
     border-radius: 2px;
-    padding: 0.1em 0.3em;
-    margin: -0.1em -0.3em;
   }
 
   @keyframes fn-highlight {
@@ -689,10 +687,9 @@ a.hl[data-pressure="3"] {
     100%    { background-color: transparent; }
   }
 
-  /* Margin note items: em-dash instead of list number, skip the counter */
+  /* Margin note items: em-dash instead of list number */
   .post-content .footnotes li.mn-item {
     list-style: none;
-    counter-increment: none;
   }
 
   .post-content .footnotes li.mn-item::before {

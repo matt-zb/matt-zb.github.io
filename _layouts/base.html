@@ -95,6 +95,8 @@
 
       // Sidenote-only counter (margin notes are not counted)
       var snCounter = 0;
+      // Maps footnote li id → sidenote number, used to fix narrow-screen list
+      var fnNumMap = {};
 
       // Insert a .sidenote or .marginnote span after each <sup> reference
       postContent.querySelectorAll('sup[id^="fnref"]').forEach(function (sup) {
@@ -114,9 +116,18 @@
           sn.dataset.num = snCounter;
           // Sync in-text sup to show sidenote-only number (not kramdown's sequential)
           a.textContent = snCounter;
+          fnNumMap[targetId] = snCounter;
         }
         sn.innerHTML = data.html;
         sup.parentNode.insertBefore(sn, sup.nextSibling);
+      });
+
+      // Set explicit list-item values on the footnotes <ol> so narrow-screen
+      // numbers match the sidenote-only counter (margin notes are skipped).
+      footnotesDiv.querySelectorAll('li[id]').forEach(function (li) {
+        if (fnNumMap[li.id] !== undefined) {
+          li.setAttribute('value', fnNumMap[li.id]);
+        }
       });
     })();
   </script>
