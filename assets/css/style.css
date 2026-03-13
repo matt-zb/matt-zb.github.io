@@ -45,6 +45,9 @@
   --rule:       #d8d0c4;
   --accent:     #b85c38;
   --accent-dim: rgba(184, 92, 56, 0.15);
+
+  /* Reusable noise texture — transparent-background gray grain */
+  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E");
 }
 
 /* ─── Reset ──────────────────────────────────────────────────── */
@@ -58,6 +61,7 @@
 html {
   font-size: 18px;
   -webkit-text-size-adjust: 100%;
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -74,15 +78,6 @@ body {
 
 /* ─── Layout ─────────────────────────────────────────────────── */
 
-/* Hide the SVG filter element from layout */
-.svg-filters {
-  position: absolute;
-  width: 0;
-  height: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
 .site-header {
   max-width: 65ch;
   margin: 0 auto;
@@ -94,24 +89,42 @@ body {
   gap: 2rem;
   align-items: baseline;
   padding-bottom: 1rem;
+  position: relative;
 }
 
-.nav-link {
+.site-nav::after {
+  content: '';
+  position: absolute;
+  left: -1.5rem;
+  right: -1.5rem;
+  bottom: 0;
+  height: 3px;
+  background-color: var(--accent);
+  background-image: var(--noise);
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 4%,
+    black 96%,
+    transparent 100%
+  );
+}
+
+.site-nav .nav-link {
   font-family: var(--font-mono);
   font-size: 0.72rem;
   letter-spacing: 0.09em;
   text-transform: uppercase;
+  font-variant: normal;
   color: var(--mid);
   text-decoration: none;
-}
-
-.nav-link {
   transition: color 0.18s;
 }
 
-.nav-link:hover,
-.nav-link.nav-current {
-  color: var(--ink);
+.site-nav .nav-link:hover,
+.site-nav .nav-link.nav-current {
+  color: var(--accent);
+  text-decoration: none;
 }
 
 .content {
@@ -195,7 +208,9 @@ code {
 pre {
   font-family: var(--font-mono);
   font-size: 0.87em;
-  background: rgba(26, 24, 20, 0.05);
+  background-color: rgba(26, 24, 20, 0.05);
+  background-image: var(--noise);
+  background-blend-mode: overlay;
   border: 1px solid var(--rule);
   border-radius: 3px;
   padding: 1.3em 1.6em;
@@ -255,107 +270,85 @@ a.external:hover::after {
 /* ── Analog highlighter ──────────────────────────────────────── */
 
 a.hl {
-  --hl-color: rgba(255, 83, 55, 0.56); /* coral */
+  --hl-color: rgba(255, 83, 55, 0.38); /* coral, softened */
+  --hl-gradient: linear-gradient(
+    to right,
+    transparent 0%,
+    color-mix(in srgb, var(--hl-color) 88%, transparent) 3%,
+    color-mix(in srgb, var(--hl-color) 84%, transparent) 20%,
+    var(--hl-color) 38%,
+    color-mix(in srgb, var(--hl-color) 86%, transparent) 58%,
+    var(--hl-color) 76%,
+    color-mix(in srgb, var(--hl-color) 90%, transparent) 93%,
+    transparent 100%
+  );
   text-decoration: none;
   color: inherit;
   cursor: pointer;
-  position: relative;
-  padding: 0 3px;
+  padding: 0.1em 3px;
   margin: 0 -3px;
-  isolation: isolate; /* stacking context so ::before z-index:-1 sits above page bg */
+  border-radius: 3px 4px 3px 4px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  background-image: var(--noise), var(--hl-gradient);
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
 }
 
-/*
-  THE HIGHLIGHT LAYER
-  Lives entirely in ::before. The SVG filter is scoped here
-  only, so text characters are never deformed.
-*/
-a.hl::before {
-  content: '';
-  position: absolute;
-  left: 0; right: 0;
-  top:    -0.13em;
-  bottom: -0.09em;
-  z-index: -1;
-  border-radius: 2px 4px 3px 3px / 5px 3px 6px 3px;
-  background-image: linear-gradient(
-    to right,
-    transparent 0%,
-    var(--hl-color) 3%,
-    color-mix(in srgb, var(--hl-color) 76%, transparent) 16%,
-    var(--hl-color) 30%,
-    color-mix(in srgb, var(--hl-color) 81%, transparent) 48%,
-    var(--hl-color) 64%,
-    color-mix(in srgb, var(--hl-color) 78%, transparent) 81%,
-    var(--hl-color) 97%,
-    transparent 100%
-  );
-  filter: url(#analog-hl);
-  clip-path: inset(0 107% 0 0);
+/* ─── Wipe-in: grow from left ────────────────────────────────── */
+a.hl.is-entering {
+  background-position: left;
+  background-size: 100% 100%;
+  transition: background-size 0.46s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ─── Wipe-in: LEFT-TO-RIGHT reveal ──────────────────────────── */
-@keyframes hl-wipe-in {
-  from { clip-path: inset(0 107% 0 0%); }
-  to   { clip-path: inset(0   0% 0 0%); }
-}
-
-/* ─── Wipe-out: LEFT-TO-RIGHT exit ───────────────────────────── */
-@keyframes hl-wipe-out {
-  from { clip-path: inset(0 0% 0 0%);   }
-  to   { clip-path: inset(0 0% 0 107%); }
-}
-
-a.hl.is-entering::before {
-  animation: hl-wipe-in  0.46s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-a.hl.is-leaving::before {
-  animation: hl-wipe-out 0.36s cubic-bezier(0.5, 0, 0.85, 0.6) forwards;
+/* ─── Wipe-out: shrink from left (anchored right) ────────────── */
+a.hl.is-leaving {
+  background-position: right;
+  background-size: 0% 100%;
+  transition: background-size 0.36s cubic-bezier(0.5, 0, 0.85, 0.6);
 }
 
 /* ─── Pressure patterns: random per-link via JS data-pressure ── */
-a.hl[data-pressure="1"]::before {
-  background-image: linear-gradient(
+a.hl[data-pressure="1"] {
+  --hl-gradient: linear-gradient(
     to right,
     transparent 0%,
-    var(--hl-color) 2%,
-    color-mix(in srgb, var(--hl-color) 69%, transparent) 13%,
-    var(--hl-color) 26%,
-    color-mix(in srgb, var(--hl-color) 84%, transparent) 44%,
+    color-mix(in srgb, var(--hl-color) 86%, transparent) 2%,
+    var(--hl-color) 18%,
+    color-mix(in srgb, var(--hl-color) 88%, transparent) 40%,
     var(--hl-color) 60%,
-    color-mix(in srgb, var(--hl-color) 77%, transparent) 75%,
-    var(--hl-color) 91%,
+    color-mix(in srgb, var(--hl-color) 84%, transparent) 80%,
+    color-mix(in srgb, var(--hl-color) 90%, transparent) 95%,
     transparent 100%
   );
 }
 
-a.hl[data-pressure="2"]::before {
-  background-image: linear-gradient(
+a.hl[data-pressure="2"] {
+  --hl-gradient: linear-gradient(
     to right,
     transparent 0%,
-    color-mix(in srgb, var(--hl-color) 79%, transparent) 2%,
-    var(--hl-color) 11%,
-    color-mix(in srgb, var(--hl-color) 72%, transparent) 29%,
-    var(--hl-color) 45%,
-    color-mix(in srgb, var(--hl-color) 88%, transparent) 63%,
-    var(--hl-color) 78%,
-    color-mix(in srgb, var(--hl-color) 70%, transparent) 93%,
-    transparent 100%
-  );
-}
-
-a.hl[data-pressure="3"]::before {
-  background-image: linear-gradient(
-    to right,
-    transparent 0%,
-    var(--hl-color) 4%,
-    color-mix(in srgb, var(--hl-color) 83%, transparent) 18%,
-    color-mix(in srgb, var(--hl-color) 91%, transparent) 36%,
-    var(--hl-color) 53%,
-    color-mix(in srgb, var(--hl-color) 74%, transparent) 71%,
-    var(--hl-color) 85%,
+    var(--hl-color) 3%,
+    color-mix(in srgb, var(--hl-color) 82%, transparent) 22%,
+    var(--hl-color) 44%,
+    color-mix(in srgb, var(--hl-color) 90%, transparent) 65%,
+    var(--hl-color) 82%,
     color-mix(in srgb, var(--hl-color) 86%, transparent) 94%,
+    transparent 100%
+  );
+}
+
+a.hl[data-pressure="3"] {
+  --hl-gradient: linear-gradient(
+    to right,
+    transparent 0%,
+    color-mix(in srgb, var(--hl-color) 90%, transparent) 4%,
+    var(--hl-color) 15%,
+    color-mix(in srgb, var(--hl-color) 85%, transparent) 35%,
+    var(--hl-color) 55%,
+    color-mix(in srgb, var(--hl-color) 88%, transparent) 74%,
+    var(--hl-color) 90%,
+    color-mix(in srgb, var(--hl-color) 92%, transparent) 96%,
     transparent 100%
   );
 }
@@ -480,16 +473,6 @@ a.hl[data-pressure="3"]::before {
   color: var(--accent);
 }
 
-/* Subtle warm wash on hover — makes the list feel alive without being flashy */
-.post-preview {
-  transition: background-color 0.2s;
-  border-radius: 2px;
-}
-
-.post-preview:hover {
-  background-color: rgba(184, 92, 56, 0.04);
-}
-
 .post-excerpt {
   color: var(--mid);
   font-size: 0.97rem;
@@ -554,8 +537,8 @@ a.hl[data-pressure="3"]::before {
 }
 
 @media (min-width: 1100px) {
-  /* Slight breathing room at wide viewports */
-  .content {
+  .content,
+  .site-header {
     padding-left: 0;
     padding-right: 0;
   }
