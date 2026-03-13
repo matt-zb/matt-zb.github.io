@@ -689,9 +689,10 @@ a.hl[data-pressure="3"] {
     100%    { background-color: transparent; }
   }
 
-  /* Margin note items: em-dash instead of list number */
+  /* Margin note items: em-dash instead of list number, skip the counter */
   .post-content .footnotes li.mn-item {
     list-style: none;
+    counter-increment: none;
   }
 
   .post-content .footnotes li.mn-item::before {
