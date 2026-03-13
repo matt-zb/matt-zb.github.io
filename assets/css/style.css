@@ -635,20 +635,19 @@ a.hl[data-pressure="3"] {
     margin-top: 0.15em;
     margin-bottom: 0.75em;
     font-family: var(--font-body);
-    font-size: 0.78rem;
-    line-height: 1.5;
+    font-size: 0.75rem;
+    line-height: 1.35;
     color: var(--mid);
   }
 
-  /* Sidenote: number injected by JS via data-num attribute */
+  /* Sidenote: superscript number injected by JS via data-num attribute */
   .sidenote::before {
     content: attr(data-num);
     font-family: var(--font-body);
-    font-size: 0.72rem;
+    font-size: 0.63rem;
     color: var(--mid);
     vertical-align: super;
-    line-height: 1;
-    margin-right: 0.35em;
+    margin-right: 0.15em;
   }
 
   /* Margin note: no number prefix */
@@ -656,15 +655,27 @@ a.hl[data-pressure="3"] {
     content: none;
   }
 
-  /* Strip paragraph margin inside notes */
-  .sidenote p,
+  /* Sidenote paragraphs run inline so the superscript number shares the first line */
+  .sidenote p {
+    display: inline;
+    font-size: inherit;
+    color: inherit;
+  }
+
+  /* Block-level break between consecutive sidenote paragraphs */
+  .sidenote p + p::before {
+    content: '';
+    display: block;
+    margin-top: 0.35em;
+  }
+
+  /* Marginnote paragraphs stay block */
   .marginnote p {
     font-size: inherit;
     color: inherit;
     margin-bottom: 0.35em;
   }
 
-  .sidenote p:last-child,
   .marginnote p:last-child {
     margin-bottom: 0;
   }
