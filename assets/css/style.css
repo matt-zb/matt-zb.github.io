@@ -543,3 +543,145 @@ a.hl[data-pressure="3"] {
     padding-right: 0;
   }
 }
+
+/* ─── Sidenotes & Margin Notes ────────────────────────────────── */
+
+/* CSS counter resets per post */
+.post-content {
+  counter-reset: sidenote-counter;
+}
+
+/* In-text superscript (sidenotes): body font, muted */
+.post-content sup.footnote {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  line-height: 1;
+  vertical-align: super;
+  color: var(--mid);
+}
+
+.post-content sup.footnote a {
+  color: var(--mid);
+  text-decoration: none;
+}
+
+.post-content sup.footnote a:hover {
+  color: var(--accent);
+}
+
+/* In-text superscript for margin notes: hidden entirely */
+.post-content sup.footnote.mn-ref {
+  display: none;
+}
+
+/* Hidden by default; only shown at wide breakpoint */
+.sidenote,
+.marginnote {
+  display: none;
+}
+
+/* ── Wide screens: float both note types into right margin ── */
+@media (min-width: 1200px) {
+  .sidenote,
+  .marginnote {
+    display: block;
+    float: right;
+    clear: right;
+    width: 180px;
+    /* Negative margin-right pulls the float entirely outside the 65ch column */
+    margin-right: calc(-180px - 1.75rem);
+    margin-left: 0;
+    margin-top: 0.15em;
+    margin-bottom: 0.75em;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: var(--mid);
+  }
+
+  /* Sidenote: CSS counter auto-generates the number */
+  .sidenote {
+    counter-increment: sidenote-counter;
+  }
+
+  .sidenote::before {
+    content: counter(sidenote-counter);
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    color: var(--mid);
+    vertical-align: super;
+    line-height: 1;
+    margin-right: 0.35em;
+  }
+
+  /* Margin note: no number prefix */
+  .marginnote::before {
+    content: none;
+  }
+
+  /* Strip paragraph margin inside notes */
+  .sidenote p,
+  .marginnote p {
+    font-size: inherit;
+    color: inherit;
+    margin-bottom: 0.35em;
+  }
+
+  .sidenote p:last-child,
+  .marginnote p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Hide kramdown footnotes block — sidenotes replace it */
+  .post-content .footnotes {
+    display: none;
+  }
+}
+
+/* ── Narrow screens: sidenotes hidden, show footnotes at bottom ── */
+@media (max-width: 1199px) {
+  .post-content .footnotes {
+    margin-top: 2.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .post-content .footnotes ol {
+    padding-left: 1.4em;
+  }
+
+  .post-content .footnotes li {
+    font-size: 0.88rem;
+    color: var(--mid);
+    line-height: 1.5;
+    margin-bottom: 0.55em;
+  }
+
+  /* Margin note items: em-dash instead of list number */
+  .post-content .footnotes li.mn-item {
+    list-style: none;
+  }
+
+  .post-content .footnotes li.mn-item::before {
+    content: "— ";
+    color: var(--mid);
+  }
+
+  .post-content .footnotes li p {
+    font-size: inherit;
+    color: inherit;
+    margin-bottom: 0;
+  }
+
+  /* Back-ref arrow: subtle */
+  .post-content .footnotes .reversefootnote {
+    color: var(--rule);
+    text-decoration: none;
+    margin-left: 0.3em;
+    font-size: 0.85em;
+  }
+
+  .post-content .footnotes .reversefootnote:hover {
+    color: var(--mid);
+  }
+}
