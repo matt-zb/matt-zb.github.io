@@ -609,10 +609,18 @@ a.hl[data-pressure="3"] {
 
 /* ── Wide screens: float notes into right margin ── */
 @media (min-width: 801px) {
-  /* Shift post content slightly left so notes have room at ~960px */
-  .content:has(article.post) {
+  /* Centre the combined text+sidenote block on all pages.
+     Combined half-width = 32.5ch + 0.75rem + 87.5px (text + gap/2 + sidenote/2). */
+  .content {
     margin-left: auto;
-    margin-right: calc(50vw - 32.5ch + 55px);
+    margin-right: calc(50vw - 32.5ch + 87.5px + 0.75rem);
+  }
+
+  /* Header spans the full text+sidenote width so the nav border aligns */
+  .site-header {
+    max-width: calc(65ch + 1.5rem + 175px);
+    margin-left: auto;
+    margin-right: calc(50vw - 32.5ch - 87.5px - 0.75rem);
   }
 
   .sidenote,
