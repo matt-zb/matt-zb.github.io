@@ -246,6 +246,16 @@ pre code {
 
 /* ─── Links ──────────────────────────────────────────────────── */
 
+/* Fragment links (TOC, in-page anchors) — match body text, accent on hover */
+a[href^="#"]:not(.heading-anchor):not(.reversefootnote) {
+  color: inherit;
+  text-decoration: none;
+}
+
+a[href^="#"]:not(.heading-anchor):not(.reversefootnote):hover {
+  color: var(--accent);
+}
+
 /* Internal links — small caps, softened color */
 a[href^="/"] {
   font-variant: small-caps;
@@ -598,7 +608,7 @@ a.hl[data-pressure="3"] {
 }
 
 /* ── Wide screens: float notes into right margin ── */
-@media (min-width: 960px) {
+@media (min-width: 801px) {
   /* Shift post content slightly left so notes have room at ~960px */
   .content:has(article.post) {
     margin-left: auto;
@@ -658,7 +668,7 @@ a.hl[data-pressure="3"] {
 }
 
 /* ── Narrow screens: show footnotes at bottom ── */
-@media (max-width: 959px) {
+@media (max-width: 800px) {
   .post-content .footnotes {
     margin-top: 2.5rem;
     padding-top: 1.25rem;
