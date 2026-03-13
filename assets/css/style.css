@@ -84,19 +84,16 @@ body {
 }
 
 .site-header {
+  max-width: 65ch;
+  margin: 0 auto;
   padding: 1.5rem 2rem 0;
-  /* Thin warm accent rule at top of every page — welcoming but unobtrusive */
-  border-top: 2px solid var(--accent);
 }
 
 .site-nav {
-  max-width: 65ch;
-  margin: 0 auto;
   display: flex;
   gap: 2rem;
   align-items: baseline;
   padding-bottom: 1rem;
-  border-bottom: 1px solid var(--rule);
 }
 
 .nav-link {
@@ -121,16 +118,6 @@ body {
   max-width: 65ch;
   margin: 0 auto;
   padding: 2.5rem 2rem 4rem;
-}
-
-.site-footer {
-  border-top: 1px solid var(--rule);
-  padding: 1.5rem 2rem;
-  text-align: center;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  color: var(--mid);
-  letter-spacing: 0.02em;
 }
 
 /* ─── Typography ─────────────────────────────────────────────── */
@@ -275,6 +262,7 @@ a.hl {
   position: relative;
   padding: 0 3px;
   margin: 0 -3px;
+  isolation: isolate; /* stacking context so ::before z-index:-1 sits above page bg */
 }
 
 /*
@@ -376,8 +364,6 @@ a.hl[data-pressure="3"]::before {
 
 .post-header {
   margin-bottom: 2.8rem;
-  padding-bottom: 1.6rem;
-  border-bottom: 1px solid var(--rule);
 }
 
 .post-meta {
@@ -437,9 +423,7 @@ a.hl[data-pressure="3"]::before {
 /* ─── Index / post list ──────────────────────────────────────── */
 
 .index-intro {
-  margin-bottom: 2rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--rule);
+  margin-bottom: 2.5rem;
 }
 
 .index-intro h1 {
@@ -460,11 +444,6 @@ a.hl[data-pressure="3"]::before {
 
 .post-preview {
   padding: 1.8rem 0;
-  border-bottom: 1px solid var(--rule);
-}
-
-.post-preview:first-child {
-  border-top: 1px solid var(--rule);
 }
 
 .post-preview .post-date {
@@ -522,8 +501,6 @@ a.hl[data-pressure="3"]::before {
 
 .page-header {
   margin-bottom: 2rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--rule);
 }
 
 .page-header h1 {
@@ -561,10 +538,6 @@ a.hl[data-pressure="3"]::before {
 
   .site-nav {
     gap: 1.5rem;
-  }
-
-  .site-footer {
-    padding: 1.25rem;
   }
 
   h1 { font-size: 2rem; }
