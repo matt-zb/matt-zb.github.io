@@ -246,25 +246,24 @@ a.external:hover::after {
 /* ── Analog highlighter ──────────────────────────────────────── */
 
 a.hl {
-  --hl-color: rgba(255, 83, 55, 0.56); /* coral */
+  --hl-color: rgba(255, 83, 55, 0.38); /* coral, softened */
   text-decoration: none;
   color: inherit;
   cursor: pointer;
   padding: 0.1em 3px;
   margin: 0 -3px;
-  border-radius: 2px;
+  border-radius: 3px 4px 3px 4px;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
   background-image: linear-gradient(
     to right,
     transparent 0%,
-    var(--hl-color) 3%,
-    color-mix(in srgb, var(--hl-color) 76%, transparent) 16%,
-    var(--hl-color) 30%,
-    color-mix(in srgb, var(--hl-color) 81%, transparent) 48%,
-    var(--hl-color) 64%,
-    color-mix(in srgb, var(--hl-color) 78%, transparent) 81%,
-    var(--hl-color) 97%,
+    color-mix(in srgb, var(--hl-color) 88%, transparent) 3%,
+    color-mix(in srgb, var(--hl-color) 84%, transparent) 20%,
+    var(--hl-color) 38%,
+    color-mix(in srgb, var(--hl-color) 86%, transparent) 58%,
+    var(--hl-color) 76%,
+    color-mix(in srgb, var(--hl-color) 90%, transparent) 93%,
     transparent 100%
   );
   background-size: 0% 100%;
@@ -290,13 +289,12 @@ a.hl[data-pressure="1"] {
   background-image: linear-gradient(
     to right,
     transparent 0%,
-    var(--hl-color) 2%,
-    color-mix(in srgb, var(--hl-color) 69%, transparent) 13%,
-    var(--hl-color) 26%,
-    color-mix(in srgb, var(--hl-color) 84%, transparent) 44%,
+    color-mix(in srgb, var(--hl-color) 86%, transparent) 2%,
+    var(--hl-color) 18%,
+    color-mix(in srgb, var(--hl-color) 88%, transparent) 40%,
     var(--hl-color) 60%,
-    color-mix(in srgb, var(--hl-color) 77%, transparent) 75%,
-    var(--hl-color) 91%,
+    color-mix(in srgb, var(--hl-color) 84%, transparent) 80%,
+    color-mix(in srgb, var(--hl-color) 90%, transparent) 95%,
     transparent 100%
   );
 }
@@ -305,13 +303,12 @@ a.hl[data-pressure="2"] {
   background-image: linear-gradient(
     to right,
     transparent 0%,
-    color-mix(in srgb, var(--hl-color) 79%, transparent) 2%,
-    var(--hl-color) 11%,
-    color-mix(in srgb, var(--hl-color) 72%, transparent) 29%,
-    var(--hl-color) 45%,
-    color-mix(in srgb, var(--hl-color) 88%, transparent) 63%,
-    var(--hl-color) 78%,
-    color-mix(in srgb, var(--hl-color) 70%, transparent) 93%,
+    var(--hl-color) 3%,
+    color-mix(in srgb, var(--hl-color) 82%, transparent) 22%,
+    var(--hl-color) 44%,
+    color-mix(in srgb, var(--hl-color) 90%, transparent) 65%,
+    var(--hl-color) 82%,
+    color-mix(in srgb, var(--hl-color) 86%, transparent) 94%,
     transparent 100%
   );
 }
@@ -320,13 +317,13 @@ a.hl[data-pressure="3"] {
   background-image: linear-gradient(
     to right,
     transparent 0%,
-    var(--hl-color) 4%,
-    color-mix(in srgb, var(--hl-color) 83%, transparent) 18%,
-    color-mix(in srgb, var(--hl-color) 91%, transparent) 36%,
-    var(--hl-color) 53%,
-    color-mix(in srgb, var(--hl-color) 74%, transparent) 71%,
-    var(--hl-color) 85%,
-    color-mix(in srgb, var(--hl-color) 86%, transparent) 94%,
+    color-mix(in srgb, var(--hl-color) 90%, transparent) 4%,
+    var(--hl-color) 15%,
+    color-mix(in srgb, var(--hl-color) 85%, transparent) 35%,
+    var(--hl-color) 55%,
+    color-mix(in srgb, var(--hl-color) 88%, transparent) 74%,
+    var(--hl-color) 90%,
+    color-mix(in srgb, var(--hl-color) 92%, transparent) 96%,
     transparent 100%
   );
 }
