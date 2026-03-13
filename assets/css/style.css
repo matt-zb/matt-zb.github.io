@@ -90,23 +90,21 @@ body {
   padding-bottom: 1rem;
 }
 
-.nav-link {
+.site-nav .nav-link {
   font-family: var(--font-mono);
   font-size: 0.72rem;
   letter-spacing: 0.09em;
   text-transform: uppercase;
+  font-variant: normal;
   color: var(--mid);
   text-decoration: none;
+  transition: color 0.18s;
 }
 
-.nav-link {
-  transition: color 0.18s, font-family 0.18s;
-}
-
-.nav-link:hover,
-.nav-link.nav-current {
-  font-family: var(--font-body);
+.site-nav .nav-link:hover,
+.site-nav .nav-link.nav-current {
   color: var(--accent);
+  text-decoration: none;
 }
 
 .content {
