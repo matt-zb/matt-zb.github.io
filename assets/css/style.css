@@ -89,6 +89,7 @@ body {
   gap: 2rem;
   align-items: baseline;
   padding-bottom: 1rem;
+  border-bottom: 3px solid var(--accent);
 }
 
 .site-nav .nav-link {
