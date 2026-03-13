@@ -518,8 +518,8 @@ a.hl[data-pressure="3"] {
 }
 
 @media (min-width: 1100px) {
-  /* Slight breathing room at wide viewports */
-  .content {
+  .content,
+  .site-header {
     padding-left: 0;
     padding-right: 0;
   }
