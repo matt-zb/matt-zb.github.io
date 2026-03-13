@@ -95,8 +95,8 @@ body {
 .site-nav::after {
   content: '';
   position: absolute;
-  left: 0;
-  right: 0;
+  left: -1.5rem;
+  right: -1.5rem;
   bottom: 0;
   height: 3px;
   background-color: var(--accent);
@@ -104,8 +104,8 @@ body {
   mask-image: linear-gradient(
     to right,
     transparent 0%,
-    black 2%,
-    black 97%,
+    black 4%,
+    black 96%,
     transparent 100%
   );
 }
