@@ -1,3 +1,10 @@
+---
+title: "This is an Evil Riddle"
+date: 2026-04-14
+layout: post
+description: ""
+---
+
 You stand in a crypt. You look around and see a lot of bones.
 
 >You examine the bones.
