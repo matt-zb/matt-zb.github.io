@@ -9,7 +9,8 @@ title: "Home"
 </section>
 
 <ol class="post-list" reversed>
-  {% for post in site.posts %}
+  {% assign visible_posts = site.posts | where_exp: "post", "post.archived != true" %}
+  {% for post in visible_posts %}
   <li class="post-preview">
     <time class="post-date" datetime="{{ post.date | date: '%Y-%m-%d' }}">
       {{ post.date | date: '%B %-d, %Y' }}

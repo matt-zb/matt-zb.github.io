@@ -46,7 +46,7 @@
     });
 
     // Random page navigation
-    var sitePostUrls = [{% for post in site.posts %}"{{ post.url | relative_url }}"{% unless forloop.last %},{% endunless %}{% endfor %}];
+    var sitePostUrls = [{% assign visible_posts = site.posts | where_exp: "post", "post.archived != true" %}{% for post in visible_posts %}"{{ post.url | relative_url }}"{% unless forloop.last %},{% endunless %}{% endfor %}];
     document.getElementById('nav-random').addEventListener('click', function (e) {
       e.preventDefault();
       if (sitePostUrls.length)

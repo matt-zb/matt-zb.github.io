@@ -14,3 +14,15 @@ kramdown:
 
 plugins:
   - jekyll-feed
+
+defaults:
+  - scope:
+      path: "_posts/drafts"
+      type: "posts"
+    values:
+      published: false
+  - scope:
+      path: "_posts/archive"
+      type: "posts"
+    values:
+      archived: true
