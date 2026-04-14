@@ -1,0 +1,320 @@
+You stand in a crypt. You look around and see a lot of bones.
+
+>You examine the bones.
+There are bones all around you. You hear a low growl, and look around. You see a large black wolf staring at you from about 10 feet away. He's growling, and doesn't seem friendly.
+The wolf roars, and charges at you!
+
+>You cast shield on yourself.
+You raise your shield, but the wolf's attack is fierce. It smashes into you, knocking you to the ground.
+
+>You fireball.
+You cast a fireball, which engulfs the wolf in flames. It howls in pain but is consumed nonetheless.
+
+>You get up.
+You stand up, and look around. There is a stone staircase leading up, as well as a corridor leading further in.
+Which do you enter?
+
+>You enter staircase.
+You enter the stone staircase, and find yourself in a different corridor. You continue down it, and find a room with six large idols.
+
+>You view idols.
+The idols, though large, are hollow and fragile. They seem to be made out of a dark grey metal, with strange symbols etched into them.
+
+>You read symbols.
+The symbols seem to be an old tongue. The language of magic.
+Which do you attempt to read first?
+
+>You read heaviest one.
+You read the biggest one first.
+It reads: "This is an evil riddle."
+You think it is from a story read to you as a child.
+
+>You take idols.
+You pick up the idols and carry them out of the ruins. Outside it is dawn already, and guards shout in the distance. You would be found and interrogated if you stayed there.
+All together, in your hands, the idols read: "Who do you attempt to smite?"
+The idols, other than the heaviest, are gibberish read individually.
+
+>You leave to town.
+You move down the path. After half a day's travel, you reach a small village.
+About half a mile down, you see smoke rising from a building.
+Do you enter the forge?
+
+>You forge.
+You enter the forge, and find yourself in a large room with eight workbenches, all with anvils, and a few with metal to be worked.
+Gold, silver, iron, steel, copper, brass, and bronze.
+Which do you choose?
+There is nobody in the forge with you.
+
+>You gold.
+You work on the gold, shaping it into a short sword.
+You spend several hours working on the project, which is then interrupted by a heavy knock on the door.
+
+>You answer door.
+You open the door, and are met by a regal-looking woman in a red robe with a snakeskin belt.
+She says nothing and looks past you into the forge.
+Do you speak first?
+
+>You speak to woman.
+You speak to the woman first, and ask what she is doing here.
+What does she answer?
+
+>You hello.
+She answers, "Hello."
+Which question do you ask next?
+What do you say next?
+What does she answer?
+
+>You she does not answer, and instead walks away.
+You will the woman to leave.
+The woman does not move from her place.
+You again attempt to ask her about her reason for being here.
+What does she say?
+She says: "I think this place is based on a real place I went as a child."
+What does she answer?
+
+>You nothing.
+She says nothing and looks past you into the forge.
+What does she answer?
+"Nothing."
+
+>You close door and work.
+You work on the metal for several hours, shaping it into a blade, sharpening it, adding intricate designs to the guard and hilt, that look like laughter and revelry.
+The sword is completed, and it is beautiful and bright. It reminds you of the warm summer sun.
+Your pride is interrupted by a knock on the door.
+The sword whispers in your mind: "Solve my riddle: Who do you attempt to smite?"
+
+>You answer door.
+You open the door, and are met by a regal-looking woman in a red robe with a snakeskin belt.
+This is based on a real person.
+She whispers in your mind: "Do you smite the woman?" and looks past you into the forge.
+
+>You smite woman.
+Your sword pierces the skin between her ribs and she falls down.
+The woman fades like a warm summer sunset.
+
+>You think.
+You sit down and close your eyes, thinking of who you want to smite.
+There is nobody in the forge with you.
+What do you think about next?
+
+>You stoke forge.
+The light of the forge flickers upon your face.
+The crackling of the coals sounds like an evil riddle being asked.
+There is nobody in the forge with you.
+The sword whispers in your mind: "Who would you like to smite?"
+
+>You leave.
+You do not smite anyone, and instead leave in search of purpose.
+You leave the forge, heading into the forest.
+What do you see?
+Someone says: "This is an evil riddle."
+There is nobody in the forest with you.
+What do you see that has you puzzled?
+
+>You nothing.
+In a clearing, you see a black obelisk.
+Nothing puzzles you.
+You read the white words on the obelisk:
+Eyes see,
+Ears hear,
+Nose knows,
+Teeth bite,
+Hand touches,
+Body moves,
+Mind thinks,
+Door opens.
+
+>You do obelisk actions.
+You do the actions on the obelisk one by one, trying to find the answer.
+There is no door here.
+Nothing appears to happen.
+What do you notice?
+
+>You find answer.
+You notice nothing but continue trying to find the answer.
+You continue the cycle, concentrating.
+What do you notice?
+You notice nothing.
+"This is an evil riddle."
+What do you notice after completing the cycle?
+You notice Nothing.
+There is no door here.
+
+>You notice.
+You try desperately to notice something new.
+You notice the large, black obelisk standing in the center of the clearing.
+You also notice a large, black cube resting on the ground next to it.
+There is nobody in the clearing with you and the sword.
+The cube was not there the last time you tried to notice.
+Which do you attempt to access?
+
+>You access obelisk.
+There is no door on the obelisk to access.
+You approach the obelisk and read the runes.
+What does the obelisk say?
+It says nothing. It is based on a real person, but it is not a real person.
+What do the words on the obelisk say?
+You look at the biggest symbol first.
+It reads: "This is an evil riddle."
+The other symbols are gibberish read individually.
+It reminds you of an idol you had when you were an adult.
+
+>You read obelisk and it says, "Eyes see, ears hear, Nose knows, Teeth bite, Hand touches, Body moves, Mind thinks, Door opens".
+This is an evil riddle.
+
+>You say "This is an evil riddle".
+This is an evil riddle.
+What do you say next?
+This is based on a real person.
+
+>You say "This is based on a real person".
+This evil riddle is based on a real person.
+It reminds you of a riddle your grandfather told you when you were a child. He was an ancient man then.
+You say "What do you say next?"
+Who do you attempt to smite next?
+You hear something say in your mind: "This is an evil riddle."
+What do you say next?
+
+>You say nothing and touch obelisk.
+It feels like it is based on a real person.
+There is nobody inside the obelisk.
+What do you say after touching the obelisk?
+
+>You say nothing and touch cube.
+This is an evil riddle.
+What do you notice after touching the cube?
+This is based on a real person.
+The cube is freezing cold to the touch.
+What do you do after touching the cube?
+
+>You recoil.
+You recoil after touching the cube. Your hand tingles with numbness.
+What do you notice?
+You know this is based on a real person.
+You remind yourself of the real person you were when you were a child.
+The thought drains you and you collapse, asleep.
+You wake up at dawn, and it's the same as every other day.
+You set out to do your work, but there is no work to be done here.
+There is nobody in the clearing with you except the sword.
+You go to sleep, but you're not tired.
+
+>You wake up.
+You wake up in a clearing.
+You are freezing cold to the touch.
+You see nothing.
+
+>You look for obelisk and cube.
+You walk through the forest, still in a daze.
+What do you see?
+You see an abandoned hut, and the chimney smokes.
+It looks warm in the hut, like sand.
+
+>You enter hut.
+You sit down at a table and eat a piece of dried meat.
+The sword is in the hut with you.
+
+>You look for person in hut.
+There is no family in the hut with you.
+You see nothing but darkness. You have not found a solution.
+
+>You go outside and see obelisk.
+In back of the hut, in a dense wood, you see Nothing.
+You read the words on the obelisk:
+Eyes see,
+Ears hear,
+Nose knows,
+Teeth bite,
+Hand touches,
+Body moves,
+Mind thinks,
+Door opens.
+What do you notice?
+
+>You climb obelisk.
+You climb the obelisk, and fall off.
+Nothing is new.
+
+>You measure how tall the obelisk is.
+The obelisk is exactly two meters tall.
+Nothing is new.
+
+>You cast a spell on the obelisk, hoping to end this riddle.
+You utter an incantation, and you feel a sudden drain of your mind.
+Do you continue the incantation, or stop it to preserve your mind?
+
+>You continue.
+You continue the incantation, and you feel a sudden drain of your strength.
+Do you continue the incantation, or stop it to preserve your strength?
+The sword whispers in your mind: "This is based on a real person. You want to smite them."
+
+>You finish incantation.
+You finish the incantation, and you feel a sudden drain of your memory.
+Do you continue the incantation, or stop it to preserve your memory?
+You are an evil riddle.
+You already finished the incantation.
+Do you continue the incantation, or stop it to preserve your memory?
+
+>You look at obelisk and cube.
+You touch the cube, and feel a sudden drain of your willpower.
+The cube smells like sulfur, like sour water from the well.
+Do you continue to touch the cube, or pull your hand back?
+
+>You stop touching.
+You pull your hand back.
+Did you continue to touch the cube, or pull your hand back?
+You touch the cube, and feel a sudden drain of your spirit.
+This is based on a real person.
+The cube hums like a woman with a snakeskin belt, who once forged you a glimmering sword when you were a child.
+What do you notice?
+Nothing is new.
+
+>You figure out riddle.
+You hear yourself whisper in your mind: "I want to figure out the riddle."
+This is based on a real person.
+The cube feels spongy and bloated to the touch.
+It reminds you of utter disgust that you felt as a child.
+What do you notice?
+
+>You destroy obelisk.
+You are holding a shimmering, golden sword, which reminds you of the summer sun. You look at the sword, awe-struck.
+You attempt to smite the obelisk, but the sword shatters irrevocably into warm sand.
+You hear whispers in your mind: "This is based on a real person. Who did you attempt to smite?"
+The sand is forever mixed with the forest earth.
+
+>You fix sword.
+You notice that the sword cannot be fixed.
+There is no sword with you in the forest.
+You kneel and desperately claw at the soil, but the golden grains elude you.
+
+>You think "is this based on me?"
+You think, "is this based on me?"
+This is an evil riddle.
+You notice the world around you.
+Of the dirt in your grasp, only the sand remains.
+The forest around you fades away like a warm summer sunset.
+You stand in the middle of a barren desert, surrounded by cacti, with no water.
+There is nobody in the desert with you.
+Nothing here reminds you of anything.
+
+>You look for obelisk in desert.
+You look around, but you can't see it. You can only search in only one direction, because the summer sun is rising in another.
+This is an evil riddle.
+You are the desert and its sand.
+You continue to walk, and see the obelisk over a dune ahead.
+You walk towards the obelisk, and the image of it does not move any closer.
+It stands in the sand at a set distance from where your feet should step.
+There is nobody in the desert with you.
+There is no cube in the desert with you.
+
+>You look at nobody.
+Only the warm sand is in this grim desert with you.
+Only you are in the desert with you.
+As you continue to look at the obelisk mirage, it begins to shift and move.
+This is based on a real person.
+What do you notice?
+
+>You notice everything.
+Everything that happens to you is simultaneous. In an instant, you realize everything that you've done.
+You know that nothing is new. Nothing is not even new.
+You have done nothing.
+You are alone in the desert.
