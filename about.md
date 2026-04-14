@@ -10,7 +10,7 @@ description: "About Matthew Zbikowski, the author of this blog."
   </header>
 
   <div class="page-content">
-    <p>I'm Matthew Zbikowski, a civil engineer who writes about whatever occupies my mind.</p>
+    <p>I'm Matthew Zbikowski, and I write about whatever occupies my mind.</p>
 
     <h2>Contact</h2>
 
